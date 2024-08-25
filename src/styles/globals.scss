@@ -1,0 +1,25 @@
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+}
+
+body,
+html {
+  min-width: 320px;
+  scroll-behavior: smooth;
+  position: relative;
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  background-color: black;
+}
+
+a {
+  display: block;
+  text-decoration: none;
+  cursor: pointer;
+  color: inherit;
+}
+
