@@ -2,8 +2,8 @@ import {action, autorun, computed, makeObservable, observable} from "mobx";
 
 
 class ObservableTodoStore {
-    todos = [];
-    pendingRequests = 0;
+    todos: Array<any> = [];
+    pendingRequests: number = 0;
 
     constructor() {
         makeObservable(this, {
@@ -31,7 +31,7 @@ class ObservableTodoStore {
         + `Progress: ${this.completedTodosCount}/${this.todos.length}`;
     }
 
-    addTodo(task) {
+    addTodo(task: string) {
         this.todos.push({
             task: task,
             completed: false,
@@ -40,7 +40,7 @@ class ObservableTodoStore {
         })
     }
 
-    removeTodo(id) {
+    removeTodo(id: number) {
         this.todos = this.todos.filter(todo => todo.id !== id)
     }
 

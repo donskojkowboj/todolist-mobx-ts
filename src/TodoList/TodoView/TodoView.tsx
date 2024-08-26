@@ -1,15 +1,21 @@
+import React, {useState} from "react";
 import {observer} from "mobx-react-lite";
 import {PendingIcon} from "../../assets/icons/PendingIcon";
 import {RemoveIcon} from "../../assets/icons/RemoveIcon";
 import {DoneIcon} from "../../assets/icons/DoneIcon";
 import styles from './TodoView.module.scss'
-import {useState} from "react";
 
 
+type TodoViewProps = {
+    todo: any;
+    id: number;
+    removeTodo: any;
+}
 
-export const TodoView = observer(({todo, id, removeTodo}) => {
-    const [isEditing, setIsEditing] = useState(false);
-    const [newTask, setNewTask] = useState(todo.task);
+
+export const TodoView: React.FC<TodoViewProps> = observer(({todo, id, removeTodo}) => {
+    const [isEditing, setIsEditing] = useState<boolean>(false);
+    const [newTask, setNewTask] = useState<string>(todo.task);
     const finishedTask = `${styles.listItem} ${styles.finished}`;
     const unfinished = `${styles.listItem}`
 
@@ -24,11 +30,11 @@ export const TodoView = observer(({todo, id, removeTodo}) => {
         setIsEditing(!isEditing);
     }
 
-    const handleChange = (e) => {
+    const handleChange = (e: any) => {
         setNewTask(e.target.value);
     };
 
-    const onRemove = (id) => {
+    const onRemove = (id: number) => {
         removeTodo(id);
     }
 

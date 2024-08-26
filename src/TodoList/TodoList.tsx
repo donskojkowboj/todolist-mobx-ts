@@ -1,18 +1,21 @@
-import {useState} from "react";
-import {observer} from "mobx-react-lite";
+import React, {useState} from "react";
 
+import {observer} from "mobx-react-lite";
 import {Container} from "../Container";
 import {TodoView} from "./TodoView";
 import {RocketIcon, PlusIcon} from "../assets/icons/icons";
-import img from '../assets/clipboard.png'
+import img from "../assets/clipboard.png"
 
 import styles from './TodoList.module.scss'
 
+type TodoListProps = {
+    store: any;
+}
 
-export const TodoList = observer(({store}) => {
+export const TodoList: React.FC<TodoListProps> = observer(({store}) => {
     const [text, setText] = useState('');
 
-    const onTextChange = (e) => {
+    const onTextChange = (e: any) => {
         setText(e.target.value)
     }
 
@@ -22,7 +25,7 @@ export const TodoList = observer(({store}) => {
         setText('')
     }
 
-    const onRemoveTodo = (id) => {
+    const onRemoveTodo = (id: number) => {
         store.removeTodo(id);
     }
 
@@ -77,7 +80,9 @@ export const TodoList = observer(({store}) => {
                              </div> :
                         <ul className={styles.list}>
                             { store.todos.length !== 0 && store.todos.map(
-                                (todo) => <TodoView removeTodo={onRemoveTodo} todo={ todo } id={todo.id} key={todo.id}/>
+                                (todo: any) => {
+                                    return <TodoView removeTodo={onRemoveTodo} todo={todo} id={todo.id} key={todo.id}></TodoView>;
+                                }
                             )}
                         </ul>
                         }
